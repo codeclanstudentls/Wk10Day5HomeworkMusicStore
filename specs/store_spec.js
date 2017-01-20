@@ -31,8 +31,8 @@ describe('Store', function(){
   });
 
   it('should be able to add records to inventory', function(){
-    store.addRecord();
-    assert.equal(0, store.inventory);
+    store.addRecord(record1);
+    assert.deepEqual([record1], store.inventory);
   });
 
 });
