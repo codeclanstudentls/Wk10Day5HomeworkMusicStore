@@ -22,6 +22,11 @@ Store.prototype = {
     this.balance += record.price;
   },
 
+  buyRecord: function(record){
+    this.inventory.splice(this.inventory.indexOf(record), 1);
+    this.balance -= record.price;
+  },
+
   inventoryValue: function(){
     return this.inventory.reduce(function (accum, record){
       return accum + record.price;

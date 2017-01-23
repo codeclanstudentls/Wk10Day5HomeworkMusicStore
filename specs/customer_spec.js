@@ -14,6 +14,7 @@ describe('Customer', function(){
   var record3;
 
   beforeEach(function(){
+    store = new Store('Vinyl Villans', 'Edinburgh', []);
     customer = new Customer();
     record1 = new Record('Michael Jackson', 'Thriller', 10.00);
     record2 = new Record('The Doors', 'LA Woman', 12.00);
@@ -45,9 +46,22 @@ describe('Customer', function(){
   });
 
   it('should increase funds when record sold', function(){
+    customer.sellRecord(record2);
+    assert.equal(112.00, customer.funds);
+  });
+
+  it('should increase shop balance when customer buys record', function(){
+    customer.buyRecord(record1);
+    store.sellRecord(record1);
+    assert.equal(10.00, store.balance);
 
   });
 
+  it('should decrease shop balance when customer sells record', function(){
+    customer.sellRecord(record1);
+    store.buyRecord(record1);
+    assert.equal(-10.00, store.balance);
+  });
   
 
 });

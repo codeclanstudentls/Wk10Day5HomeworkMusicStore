@@ -50,11 +50,18 @@ describe('Store', function(){
     assert.deepEqual([record2], store.inventory);
   });
 
-  it('should be able to increase balance when sold', function(){
+  it('should be able to increase balance when record sold', function(){
     store.addRecord(record1);
     store.addRecord(record2);
     store.sellRecord(record1);
     assert.equal(12.00, store.balance);
+  });
+
+  it('should be able to decrease balance when record bought', function(){
+    store.addRecord(record1);
+    store.addRecord(record2);
+    store.buyRecord(record1);
+    assert.equal(-12.00, store.balance);
   });
 
   it('should be able to find inventory total', function(){
