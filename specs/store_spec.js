@@ -35,4 +35,39 @@ describe('Store', function(){
     assert.deepEqual([record1], store.inventory);
   });
 
+  it('should be able to remove records from inventory', function(){
+    store.addRecord(record);
+    store.addRecord(record1);
+    store.removeRecord(record);
+    // store.listInventory();
+    assert.deepEqual([record1], store.inventory);
+  });
+
+  it('should be able to remove record from inventory when selling', function(){
+    store.addRecord(record1);
+    store.addRecord(record2);
+    store.sellRecord(record1);
+    assert.deepEqual([record2], store.inventory);
+  });
+
+  it('should be able to increase balance when sold', function(){
+    store.addRecord(record1);
+    store.addRecord(record2);
+    store.sellRecord(record1);
+    assert.equal(12.00, store.balance);
+  });
+
+  it('should be able to find inventory total', function(){
+    store.addRecord(record);
+    store.addRecord(record1);
+    store.addRecord(record2);
+    assert.equal(30, store.inventoryValue());
+  });
+
+  it('should be able to find store balance total', function(){
+    store.addRecord(record);
+    store.addRecord(record1);
+    assert.equal(22.00, store.cashValue());
+  });
+
 });
